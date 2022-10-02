@@ -19,7 +19,7 @@ logger.setLevel(logging.INFO)
 # Defining the database region, table name and dynamodb persistence adapter
 ddb_table_name = "table-name"
 ddb_resource = boto3.resource('dynamodb')
-dynamodb_adapter = DynamoDbAdapter(table_name=ddb_table_name, create_table=False, dynamodb_resource=ddb_resource)
+dynamodb_adapter = DynamoDbAdapter(table_name=ddb_table_name, create_table=True, dynamodb_resource=ddb_resource)
 
 class LaunchRequestHandler(AbstractRequestHandler):
     """Handler for Skill Launch."""
@@ -53,6 +53,7 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         speak_output = "Hello World from Chennai!"
+        slots = handler_input.request_envelope.request.intent.slots
 
         return (
             handler_input.response_builder
