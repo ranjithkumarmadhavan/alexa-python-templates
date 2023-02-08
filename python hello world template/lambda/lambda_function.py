@@ -27,7 +27,9 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
+        session_attr = handler_input.attributes_manager.session_attributes
         speak_output = "Welcome, you can say Hello or Help. Which would you like to try?"
+        session_attr['source'] = "programmerview.com"
 
         return (
             handler_input.response_builder
@@ -45,7 +47,9 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Hello World from Chennai!"
+        session_attr = handler_input.attributes_manager.session_attributes
+        source = session_attr['source']
+        speak_output = f"Hello World from {source}!"
 
         return (
             handler_input.response_builder

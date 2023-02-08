@@ -35,6 +35,9 @@ class LaunchRequestHandler(AbstractRequestHandler):
         persistent_attributes = handler_input.attributes_manager.persistent_attributes
         # print(persistent_attributes)
         # handler_input.attributes_manager.save_persistent_attributes()
+
+        # Delete all attributes from the DB
+        # handler_input.attributes_manager.delete_persistent_attributes()
         return (
             handler_input.response_builder
                 .speak(speak_output)
@@ -59,6 +62,7 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
             handler_input.response_builder
                 .speak(speak_output)
                 # .ask("add a reprompt if you want to keep the session open for the user to respond")
+                # .set_should_end_session(True)
                 .response
         )
 
@@ -70,7 +74,7 @@ class HelpIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "You can say predict my future, or predict my friend's future. If you want to enable or disable tamizh language features, can say enable tamil language, or disable tamil language. If you want to contact the developer of this skill, we can say contact developer. "
+        speak_output = "you can say hello"
 
         return (
             handler_input.response_builder
